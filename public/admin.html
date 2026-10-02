@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-site-title data-site-title-prefix="主平台">Mora Aurora Astro</title>
+<script src="js/theme.js"></script>
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* ---- 主平台专属版式（复用全站主题变量，自动适配黑白模式） ---- */
+  .admin-layout { display: grid; grid-template-columns: 216px minmax(0, 1fr); gap: 24px; margin: 26px 0 70px; align-items: start; }
+  .admin-side { position: sticky; top: 16px; background: var(--panel); border: 1px solid var(--panel-border); border-radius: 16px; padding: 14px 12px; }
+  .admin-side-title { font-size: 12px; letter-spacing: 2px; color: var(--ink-faint); padding: 4px 10px 12px; }
+  .admin-nav-item { display: block; padding: 10px 12px; border-radius: 10px; color: var(--ink-dim); font-size: 14px; cursor: pointer; margin-bottom: 4px; border: 1px solid transparent; }
+  .admin-nav-item:hover { background: var(--hover-bg); color: var(--ink); }
+  .admin-nav-item.active { background: var(--bg2); border-color: var(--panel-border); color: var(--ink); font-weight: 600; }
+  .admin-main { min-width: 0; }
+  .admin-view { display: none; animation: fadeUp .35s ease; }
+  .admin-view.active { display: block; }
+  .admin-h2 { font-family: var(--serif); font-size: 20px; letter-spacing: 2px; color: var(--ink); margin-bottom: 4px; }
+  .admin-sub { color: var(--ink-faint); font-size: 13px; margin-bottom: 18px; }
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .stat-card { background: var(--panel); border: 1px solid var(--panel-border); border-radius: 14px; padding: 14px 16px; }
+  .stat-card .k { font-size: 12.5px; color: var(--ink-faint); letter-spacing: 1px; }
+  .stat-card .v { font-size: 23px; font-weight: 700; color: var(--ink); margin-top: 6px; font-variant-numeric: tabular-nums; }
+  .stat-card .s { font-size: 12px; color: var(--ink-dim); margin-top: 4px; }
+  .admin-toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+  .admin-toolbar input, .admin-toolbar select, .admin-form input, .admin-form select, .admin-form textarea {
+    background: var(--input-bg); border: 1px solid var(--panel-border); color: var(--ink);
+    border-radius: 9px; padding: 8px 11px; font-size: 13.5px; font-family: inherit;
+  }
+  .admin-toolbar input { min-width: 180px; }
+  .admin-form { background: var(--panel); border: 1px solid var(--panel-border); border-radius: 14px; padding: 18px; }
+  .admin-form .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 14px; }
+  .admin-form label { display: block; font-size: 12.5px; color: var(--ink-dim); margin-bottom: 6px; letter-spacing: 1px; }
+  .admin-form input, .admin-form select, .admin-form textarea { width: 100%; box-sizing: border-box; }
+  .admin-form textarea { min-height: 92px; resize: vertical; line-height: 1.6; }
+  .admin-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+  .admin-table { width: 100%; }
+  .admin-table th, .admin-table td { text-align: left; padding: 9px 12px; font-size: 13.5px; }
+  .admin-table td.ops { white-space: nowrap; }
+  .admin-table td.ops button { margin-right: 6px; margin-bottom: 4px; }
+  .admin-table td.mono, .mono { font-family: ui-monospace, Consolas, "Courier New", monospace; font-size: 12.5px; }
+  .admin-pager { display: flex; gap: 12px; align-items: center; justify-content: flex-end; margin-top: 14px; font-size: 13px; color: var(--ink-dim); }
+  .trend { display: flex; gap: 6px; align-items: flex-end; height: 140px; padding: 14px; background: var(--panel); border: 1px solid var(--panel-border); border-radius: 14px; }
+  .trend .bar-wrap { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px; height: 100%; }
+  .trend .bar { width: 100%; background: var(--accent); border-radius: 4px 4px 0 0; min-height: 3px; opacity: .82; }
+  .trend .bar-lbl { font-size: 10px; color: var(--ink-faint); white-space: nowrap; }
+  .admin-section-title { font-family: var(--serif); font-size: 16px; letter-spacing: 2px; color: var(--ink); margin: 26px 0 12px; }
+  .admin-status { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--panel-border); color: var(--ink-dim); }
+  .admin-status.on { color: var(--ok); border-color: var(--ok); }
+  .pill { display: inline-block; font-size: 12px; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--panel-border); color: var(--ink-dim); }
+  .pill.warn { color: var(--danger); border-color: var(--danger); }
+  .empty-line { color: var(--ink-faint); font-size: 13.5px; padding: 22px 0; text-align: center; }
+  .log-fail { color: var(--danger); }
+  @media (max-width: 860px) { .admin-layout { grid-template-columns: 1fr; } .admin-side { position: static; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site">
+    <div class="brand">
+      <div class="brand-mark">&#9737;</div>
+      <h1><a href="index.html" style="color:inherit;text-decoration:none" data-site-name>Mora Aurora Astro</a></h1>
+    </div>
+    <div class="header-actions">
+      <nav class="main-nav">
+        <a class="nav-link" href="natal.html">本命星盘</a>
+        <a class="nav-link" href="synastry.html">占星合盘</a>
+        <a class="nav-link" href="personal.html">个人运势</a>
+        <a class="nav-link" href="customers.html">客户库</a>
+      </nav>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="切换黑白模式"></button>
+      <div id="userArea" class="user-area"></div>
+    </div>
+  </header>
+
+  <div class="admin-layout">
+    <aside class="admin-side">
+      <div class="admin-side-title">主平台 · 站长后台</div>
+      <a class="admin-nav-item active" data-view="overview">数据看板</a>
+      <a class="admin-nav-item" data-view="customers">客户档案总库</a>
+      <a class="admin-nav-item" data-view="users">用户与账号</a>
+      <a class="admin-nav-item" data-view="beta">内测账号</a>
+      <a class="admin-nav-item" data-view="wallet">星币与订单</a>
+      <a class="admin-nav-item" data-view="plans">充值套餐</a>
+      <a class="admin-nav-item" data-view="ai">AI 配置与调试</a>
+      <a class="admin-nav-item" data-view="feedback">留言反馈</a>
+      <a class="admin-nav-item" data-view="notify">消息通知群发</a>
+    </aside>
+
+    <main class="admin-main">
+      <section class="admin-view active" id="view-overview"></section>
+      <section class="admin-view" id="view-customers"></section>
+      <section class="admin-view" id="view-users"></section>
+      <section class="admin-view" id="view-beta"></section>
+      <section class="admin-view" id="view-wallet"></section>
+      <section class="admin-view" id="view-plans"></section>
+      <section class="admin-view" id="view-ai"></section>
+      <section class="admin-view" id="view-feedback"></section>
+      <section class="admin-view" id="view-notify"></section>
+    </main>
+  </div>
+
+  <footer class="site" data-site-footer>星座包括黄道十二宫的描述为传统占星文化的通俗解读，仅供娱乐与自我探索参考。</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+<div id="modalHost"></div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/notify.js"></script>
+<script src="js/customers-lib.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

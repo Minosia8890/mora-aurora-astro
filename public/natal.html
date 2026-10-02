@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="OTnTKJyyZs8xwdkY5SjeK6">
+<head data-page-node-id="VHqDeC5WTop0ggZ2eEl66E">
+<meta charset="UTF-8" data-page-node-id="TYRkObPCaKVW3kV3EUVIp2">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="njz8GYejXFVYcQG8NX63CP">
+<title data-site-title data-site-title-prefix="本命星盘">Mora Aurora Astro</title>
+<script src="js/theme.js"></script>
+<link rel="stylesheet" href="css/style.css" data-page-node-id="kZG9EObKq04DD76YbSRTsF">
+<script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+</head>
+<body data-page-node-id="ennjoBNRdMyXyB59vygq8C">
+<div class="wrap" data-page-node-id="SxdlnwyUZkxD7jKQFzPtDd">
+
+  <header class="site" data-page-node-id="Vi2CrHdd7T0fQzjZKsHCkS">
+    <div class="brand" data-page-node-id="XIrTei3moAOiZTe3HRY5IK">
+      <a href="index.html" class="brand-link" data-page-node-id="6Z1CKTyRBU4CL3CblDHBQn">
+        <div class="brand-mark" data-page-node-id="pm0BmSCs7x4XCME7Ig4QvX">&#9737;</div>
+        <h1 data-site-name data-page-node-id="NFNVPiOGODSvmC0Kim3vL8">Mora Aurora Astro</h1>
+      </a>
+    </div>
+    <nav class="main-nav" data-page-node-id="s7DAFfSG4LCx59F8Hpmpm0">
+      <a href="natal.html" class="active" data-page-node-id="A3YT17oMTLGqjPQsW6Ljgt">本命星盘</a>
+      <a href="synastry.html" data-page-node-id="PZCspJcPlArYbE6g28QBL5">占星合盘</a>
+      <a href="personal.html">个人运势</a>
+      <div class="nav-drop" data-page-node-id="D9XQLTHnvZGEGdxslwktFE">
+        <a href="horoscope.html?tab=daily" data-page-node-id="J6MrbPgh6yE8VRUlz1SilA">十二星座运势 <span class="caret" data-page-node-id="aqHO65GQTyEio2izvFN6Jd">&#9662;</span></a>
+        <div class="drop-menu" data-page-node-id="uIPJqSpkc5oQCB6qZMfA36">
+          <a href="horoscope.html?tab=daily" data-page-node-id="Y2sbxx4yeMCXPFQKKKa71v">日运</a>
+          <a href="horoscope.html?tab=monthly" data-page-node-id="pAMXIWNvH9yiWy1uOBd9Fo">月运</a>
+          <a href="horoscope.html?tab=yearly" data-page-node-id="gAdkhsTm0uykzFSV5OTN0i">年运</a>
+        </div>
+      </div>
+    </nav>
+    <div class="header-actions" data-page-node-id="lGLaQDE2OOapWciCzz311H">
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="切换黑白模式" data-page-node-id="E3i9VJgBaLs8zRBhoepdFb"></button>
+      <div id="userArea" class="user-area" data-page-node-id="42SlQvYChyhCGWYGvyDrNR"></div>
+    </div>
+  </header>
+
+  <!-- ============ 表单 ============ -->
+  <section id="hero" data-page-node-id="vyVVefjp90mNh8AXPYW4Gm">
+    <div class="hero" data-page-node-id="taNj66QkoYqxVgINOmmEbk">
+      <div class="eyebrow" data-page-node-id="t3hEEn6iPyfPzlsO2TCYn0">NATAL CHART · 本命盘</div>
+      <h2 data-page-node-id="wdzP2c9U7K0LiLYo1r4slz">你的星盘，藏着<br data-page-node-id="lIKJHWOcuHBdfonQcKPUwD">一张<span class="gold" data-page-node-id="FP6jXRzc08KHzn37cPOfkO">人生说明书</span></h2>
+      <p class="sub" data-page-node-id="KGOWCrXiUXyvuUL7zxoGDN">输入出生信息，秒级生成高精度星盘盘面（JPL 星历，误差小于 1 角分），<br data-page-node-id="PtRIp5NKZhPRFrbCku45bl">并用大白话告诉你：你是谁、你的天赋在哪、该怎么活。</p>
+    </div>
+
+    <div class="form-card" data-page-node-id="j2lpwi9UjE0ZlFOu0zclxu">
+      <div class="form-grid" data-page-node-id="SoYx016rmoc5DZinXzNwIW">
+        <div class="field" data-page-node-id="JsBViUgMUhTS2TbCTYBErg">
+          <label for="nickName" data-page-node-id="ZIycu9pg9hot1RzS3ZyB2l">昵称（可选）</label>
+          <input type="text" id="nickName" placeholder="怎么称呼你？" data-page-node-id="wEFdNAtA6knGDhRU7xJKYG">
+          <div class="err" id="err-nickName" data-page-node-id="LXEse1x8bfi63KdGZEWtpS"></div>
+        </div>
+        <div class="field" data-page-node-id="PHzh6q1e6OQDmRSeNwnBAZ">
+          <label for="birthDate" data-page-node-id="VDjMRyInSFCUwcakcMege4">出生日期 *</label>
+          <input type="date" id="birthDate" min="1800-01-01" max="2400-12-31" data-page-node-id="9FmWg5zudgIHgTbw3UpBMI">
+          <div class="err" id="err-birthDate" data-page-node-id="C363HGETm0GhiOMDMXwPDq"></div>
+        </div>
+        <div class="field" data-page-node-id="CM0u9KXW18Gj9vrwy2rgoZ">
+          <label for="birthTime" data-page-node-id="FjsVtL8ofAemMtSx9zx9TP">出生时间（24小时制，越准越准）</label>
+          <input type="time" id="birthTime" value="12:00" data-page-node-id="BJkBhmbY2kniPE8Afx4CHS">
+          <div class="err" id="err-birthTime" data-page-node-id="xx4q8aXKbLNL9FvHLfgHY7"></div>
+          <div class="check-row" data-page-node-id="CDVtzXf8ggkJ6kq7ZDHzRi">
+            <input type="checkbox" id="timeUnknown" data-page-node-id="YOlCUWopFFqVBGyTFDtaGo">
+            <label for="timeUnknown" data-page-node-id="tthvD3VyRYNGDcJA5EOmTq">出生时间不详（按中午 12:00 估算）</label>
+          </div>
+        </div>
+        <div class="field" data-page-node-id="CxCwKMGNrIG1W8bccRmiHH">
+          <label for="birthPlace" data-page-node-id="GTTiR0MYr7VXqO1wnfIc7c">出生地 *（市/区县级即可）</label>
+          <div class="geo-wrap" data-page-node-id="bSuX9SqRUTSSYDblahROYS">
+            <input type="text" id="birthPlace" placeholder="如：杭州，输入后从联想中选择" autocomplete="off" data-page-node-id="0hv6wTUDBDJV8hscsUptBR">
+          </div>
+          <div class="err" id="err-birthPlace" data-page-node-id="c2CHlx6H6hGdlgQVdQSBXM"></div>
+        </div>
+        <div class="field" data-page-node-id="T9yTfPARwjTrWebgAKnUqk">
+          <label for="livePlace" data-page-node-id="fV2CbLu6AQFqaypOKI3cfZ">现居地（可选，用于换置盘分析）</label>
+          <div class="geo-wrap" data-page-node-id="TsL6eORQgzNR503Lw5LHIJ">
+            <input type="text" id="livePlace" placeholder="如：深圳，不填则同出生地" autocomplete="off" data-page-node-id="WqtF23yrNAc0wJ11Aqny8d">
+          </div>
+        </div>
+        <div class="field" data-page-node-id="bqCFG2PSYORkXEtQoZs87f">
+          <label for="houseSystem" data-page-node-id="b6BggtC8CfZlYWLoo3ScGR">宫位制</label>
+          <div class="houses-select" data-page-node-id="Ma5pfEDBITiA4Cb5xZEf4n">
+            <select id="houseSystem" data-page-node-id="aJHgF2g6a5vS2eJmpYFH2V">
+              <option value="placidus" data-page-node-id="F8w2qSEmL4kWB2QQBpxDFQ">普拉西德制（波氏）（默认）</option>
+              <option value="whole">整宫制 (Whole Sign)</option>
+              <option value="equal">等宫制 (Equal)</option>
+              <option value="koch">柯赫 (Koch)</option>
+              <option value="regiomontanus">芮氏 (Regiomontanus)</option>
+              <option value="campanus">坎氏 (Campanus)</option>
+              <option value="alcabitius">阿卡比特 (Alcabitius)</option>
+              <option value="morinus">莫氏 (Morinus)</option>
+              <option value="topocentric">锥心 (Topocentric)</option>
+              <option value="meridian">子午线 (Meridian)</option>
+              <option value="apc">APC</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="cust-quick">
+        <button class="btn-export" id="btnPickCustomer" type="button">从客户库选择</button>
+        <span class="cust-hint">已建档的客户可一键载入出生信息</span>
+      </div>
+      <button class="btn-primary" id="btnGenerate" data-page-node-id="BEPKoHBMFOsS0coHFPnhCf">生 成 我 的 星 盘</button>
+    </div>
+  </section>
+
+  <!-- ============ 结果区 ============ -->
+  <section id="result" data-page-node-id="NKgkRQsTeBuYFonp81qwpY">
+    <div class="result-head" data-page-node-id="sdJ0Jxb1wVyITpm7aPm2BG">
+      <div data-page-node-id="hZV0nnAaTCjbGNDlMtKJrP">
+        <h2 data-page-node-id="KQcOm6Npvu7MeqySc1dvgh">你的星盘</h2>
+        <div class="place" id="placeLine" data-page-node-id="2S5ipNYdzakHrkMj1hDgIa"></div>
+      </div>
+      <div class="result-actions" data-page-node-id="RwJODqsMsAXeuHRxS5wSw2">
+        <span class="coin-chip" data-page-node-id="i8Ehl6uWjF8TF90E7357cD"></span>
+        <button class="btn-export" id="btnSave" data-page-node-id="6AEHXjoby4MlonDy8kBm64">存入客户库</button>
+        <button class="btn-export" id="btnExport" data-page-node-id="gFR5AsAToeEvPcCqfXSLKb">导出报告（1星币）</button>
+        <button class="btn-export" id="btnReset" data-page-node-id="O5qV29MAXjwFTjbIsSSwN7">重新输入</button>
+      </div>
+    </div>
+
+    <div class="chart-layout" data-page-node-id="is7Dx46T0dh00ELReIxWf7">
+      <div class="chart-box" data-page-node-id="BsaY2y4wVTxulFelY4ayDc">
+        <div id="wheel" data-page-node-id="q8yx9ppFlPKDXYsN8C34JP"></div>
+        <div class="legend" data-page-node-id="O8CHurmDrL3KQLtsKhkGeL">
+          <span data-page-node-id="CPOr8X4Tko67xVGtMVKjYR"><i class="lg-harm" data-page-node-id="rxrwga0EAAKXeLGXZwS1Jy"></i>和谐相位（实线）</span>
+          <span data-page-node-id="hOaYyFFx6TmUuvvXTlf1Tl"><i class="lg-tense" data-page-node-id="jBpOu1GKLN7TtyEm7dGOZX"></i>紧张相位（虚线）</span>
+          <span data-page-node-id="k7ABYVV1mAK0yhtZcAck65">&#8486; = 逆行</span>
+        </div>
+      </div>
+      <aside class="planet-panel" data-page-node-id="Ae1VvAG2GNTKVAcXL2iyP2">
+        <h4 class="planet-panel-title">九大行星速览</h4>
+        <div class="planet-list" id="planetList"></div>
+        <p class="planet-panel-note">行星符号后的星座与度数表示落座位置，宫位表示该行星落入的宫位；&#8486; 为逆行。</p>
+      </aside>
+    </div>
+
+    <div class="tabs" data-page-node-id="fo49qdBzgJKsY9hj9P7K9d">
+      <button class="tab active" data-tab="tab-report" data-page-node-id="UZgD1zKJbDqDD0VzuEIzkd">星盘解析</button>
+      <button class="tab" data-tab="tab-ai" data-page-node-id="GsAwuCE8rP4OXBkBYQupHM">AI 问答</button>
+      <button class="tab" data-tab="tab-data" data-page-node-id="vJgFudcYsMirIEDNZAGIm5">盘面数据</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-report" data-page-node-id="fUpsMqkBtbKMhCj9fxahWK"></div>
+
+    <div class="tab-panel" id="tab-ai" data-page-node-id="oLR0EBDaevqcCV3zBHZm21">
+      <div class="ai-tabs">
+        <button class="ai-tab active" data-ai-tab="ai-qa-panel" type="button">AI 回答</button>
+        <button class="ai-tab" data-ai-tab="ai-deep-panel" type="button">AI 深度解析</button>
+        <button class="ai-tab ai-pro-tab" data-ai-tab="ai-pro-panel" type="button" style="display:none">AI 专业解析</button>
+      </div>
+      <div class="ai-sub-panel active" id="ai-qa-panel">
+        <div class="ai-layout">
+          <!-- AI 问答 -->
+          <div class="ai-qa">
+          <div class="chips" data-page-node-id="2VyBhAFfILtBa4FuUor548">
+            <button class="chip" data-page-node-id="Prnx9l2OGmmpoWCX7RzYUN">我的事业方向该怎么选？</button>
+            <button class="chip" data-page-node-id="N4YjGdjQ6litpbpMpgH4Vy">我的感情模式是什么样的？</button>
+            <button class="chip" data-page-node-id="2DpEWoFRk6LS6qtfAh9ifN">我这一年的整体运势如何？</button>
+            <button class="chip" data-page-node-id="LA3dDASFzWBiiB89AI4PrR">我的财运怎么样？</button>
+            <button class="chip" data-page-node-id="KVzIOARUhCiveXu0klebjr">我最大的天赋是什么？</button>
+          </div>
+          <div class="chat-window" id="chatWindow" data-page-node-id="qMoK9nKrVdNEyn7eE1I8AM">
+            <div class="msg ai" data-page-node-id="ER8BokHZZcyzsuaHVZ2FfQ">
+              <div class="avatar" data-page-node-id="AUT7mBvlXNp2IHl2FC1BAf">AI</div>
+              <div class="bubble" data-page-node-id="jTXgEQcjqXAVxlgHFh4VA7">你好，我已经读完你的星盘了。事业、感情、财运、流年运势——有什么想问的直接问我，我会结合你的盘面给你说人话的答案。</div>
+            </div>
+          </div>
+          <div class="chat-input-row" data-page-node-id="HpBwFzhb2GAKOPEAesSj1u">
+            <textarea id="chatInput" rows="1" placeholder="输入你的问题，Enter 发送（Shift+Enter 换行）"></textarea>
+            <button id="btnSend" data-page-node-id="eeNcMDkNFehWPtHByC1OyL">发送</button>
+          </div>
+          <p class="ai-note" data-page-node-id="8qapOHmQYvgA0zpZlslpkb">AI 问答每次消耗 1 星币；首次使用请点击右上角「AI 设置」配置接口（支持 DeepSeek 等 OpenAI 兼容服务），配置一次全站通用。</p>
+          </div>
+        </div>
+      </div>
+      <div class="ai-sub-panel" id="ai-deep-panel">
+        <div class="deep-panel">
+          <div class="deep-head">
+            <span class="deep-badge">析</span>
+            <h4>星盘整体综合解析</h4>
+          </div>
+          <p class="deep-desc">AI 将结合你整张星盘的行星落座、宫位与相位，生成「星盘整体综合解析 + 主要课题」——帮你抓住人生主线，不做单星象逐项解读。每次消耗 1 星币。</p>
+          <div class="deep-actions">
+            <button class="btn-export" id="btnDeepReport" type="button">生成 AI 深度解析（1星币）</button>
+          </div>
+          <div class="deep-report" id="deepReport">
+            <span class="deep-empty">尚未生成深度解析。点击上方按钮，AI 将为你梳理星盘整体主线与当下最重要的成长课题。</span>
+          </div>
+        </div>
+      </div>
+      <div class="ai-sub-panel" id="ai-pro-panel">
+        <div class="deep-panel">
+          <div class="deep-head">
+            <span class="deep-badge">专</span>
+            <h4>AI 专业解析（2500 字）</h4>
+          </div>
+          <p class="deep-desc">站主/管理员专属：AI 将结合你整张星盘生成约 2500 字的专业级完整报告（整体综合解析 + 主要课题 + 本命核心课题 + 年度/近期发展综合解析 + 行动清单）。每次消耗 1 星币。</p>
+          <div class="deep-actions">
+            <button class="btn-export" id="btnProReport" type="button">生成 AI 专业解析（1星币）</button>
+          </div>
+          <div class="deep-report" id="proReport">
+            <span class="deep-empty">尚未生成专业解析。该功能仅站主/管理员可见可用。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-data" data-page-node-id="WtVjqEbD1fIMw7o6HK2QqI">
+      <div class="ai-layout" data-page-node-id="bZtyjSzD0uEjvY9QGBwXQy">
+        <div id="dataGrid" data-page-node-id="obbhu8kksqfFPU66AObj3D"></div>
+        <p class="ai-note" data-page-node-id="PgMxAHkDjv6gIJf8EX8BOd">以下为盘面原始数据（AI 问答时使用的就是这份数据，保证回答有据可依）：</p>
+        <details class="acc" data-page-node-id="lRCFKtNghZ9OKFDICGz7f4">
+          <summary data-page-node-id="ewoqsjDEL0Ob2iKERskvFc">原始数据 JSON</summary>
+          <div class="acc-body" data-page-node-id="3drRd6cB2M2AI4uazBD29H"><pre id="aiContext" class="data-pre" data-page-node-id="aqzDbk2MnqYwUsBUfobHCl"></pre></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site" data-site-footer data-page-node-id="YPgLGs7gaBq4Qe9nd0hsTe">星座包括黄道十二宫的描述为传统占星文化的通俗解读，仅供娱乐与自我探索参考。</footer>
+</div>
+
+<div class="toast" id="toast" data-page-node-id="vy6LxnYJVuxAfrsv8FITRK"></div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/notify.js"></script>
+<script src="js/billing.js"></script>
+<script src="js/astro.js"></script>
+<script src="js/interpret.js"></script>
+<script src="js/chart.js"></script>
+<script src="js/cities-cn.js"></script>
+<script src="js/customers-lib.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

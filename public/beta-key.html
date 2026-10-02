@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-site-title data-site-title-prefix="AI Key 设置">Mora Aurora Astro</title>
+<script src="js/theme.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site">
+    <div class="brand">
+      <div class="brand-mark">&#9737;</div>
+      <h1 data-site-name>Mora Aurora Astro</h1>
+    </div>
+    <div class="header-actions">
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="切换黑白模式"></button>
+      <div id="userArea" class="user-area"></div>
+    </div>
+  </header>
+
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <h2>内测账号 · AI Key 设置</h2>
+      <p class="sub">填写你自己的 OpenAI 兼容 API Key，AI 问答与专业解析将优先走你的 Key 计费与调用。</p>
+      <form id="keyForm" novalidate>
+        <div class="field">
+          <label for="aiKeyCurrent">当前已配置 Key</label>
+          <input type="text" id="aiKeyCurrent" readonly>
+        </div>
+        <div class="field">
+          <label for="aiKeyInput">新 API Key</label>
+          <input type="password" id="aiKeyInput" placeholder="sk-...（留空并保存可清除）" autocomplete="off">
+        </div>
+        <div class="form-msg" id="keyMsg"></div>
+        <button type="submit" class="btn-primary">保 存</button>
+        <button type="button" class="btn-ghost" id="btnClear" style="margin-top:8px">清除 Key</button>
+      </form>
+      <div class="auth-alt"><a href="index.html">返回首页</a> · <a href="account.html">个人中心</a></div>
+    </div>
+  </div>
+
+  <footer class="site" data-site-footer>星座包括黄道十二宫的描述为传统占星文化的通俗解读，仅供娱乐与自我探索参考。</footer>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/notify.js"></script>
+<script src="js/beta-key.js"></script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-site-title data-site-title-prefix="个人运势">Mora Aurora Astro</title>
+<script src="js/theme.js"></script>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site">
+    <div class="brand">
+      <a href="index.html" class="brand-link">
+        <div class="brand-mark">&#9737;</div>
+        <h1 data-site-name>Mora Aurora Astro</h1>
+      </a>
+    </div>
+    <nav class="main-nav">
+      <a href="natal.html">本命星盘</a>
+      <a href="synastry.html">占星合盘</a>
+      <a href="personal.html" class="active">个人运势</a>
+      <div class="nav-drop">
+        <a href="horoscope.html?tab=daily">十二星座运势 <span class="caret">&#9662;</span></a>
+        <div class="drop-menu">
+          <a href="horoscope.html?tab=daily">日运</a>
+          <a href="horoscope.html?tab=monthly">月运</a>
+          <a href="horoscope.html?tab=yearly">年运</a>
+        </div>
+      </div>
+    </nav>
+    <div class="header-actions">
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="切换黑白模式"></button>
+      <div id="userArea" class="user-area"></div>
+    </div>
+  </header>
+
+  <!-- ============ 表单 ============ -->
+  <section id="hero">
+    <div class="hero">
+      <div class="eyebrow">PERSONAL TRANSITS · 个人运势</div>
+      <h2>你的推运星盘，<br>提前看见<span class="gold">命运的天气</span></h2>
+      <p class="sub">基于你的本命盘，用太阳弧 / 日返 / 次限 / 三限 / 行运推运，<br>把未来一段时间的能量变化翻译成人话。</p>
+    </div>
+
+    <div class="form-card">
+      <div class="form-grid">
+        <div class="field">
+          <label for="nickName">昵称（可选）</label>
+          <input type="text" id="nickName" placeholder="怎么称呼你？">
+          <div class="err" id="err-nickName"></div>
+        </div>
+        <div class="field">
+          <label for="birthDate">出生日期 *</label>
+          <input type="date" id="birthDate" min="1800-01-01" max="2400-12-31">
+          <div class="err" id="err-birthDate"></div>
+        </div>
+        <div class="field">
+          <label for="birthTime">出生时间（24小时制，越准越准）</label>
+          <input type="time" id="birthTime" value="12:00">
+          <div class="err" id="err-birthTime"></div>
+          <div class="check-row">
+            <input type="checkbox" id="timeUnknown">
+            <label for="timeUnknown">出生时间不详（按中午 12:00 估算）</label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="birthPlace">出生地 *（市/区县级即可）</label>
+          <div class="geo-wrap">
+            <input type="text" id="birthPlace" placeholder="如：杭州，输入后从联想中选择" autocomplete="off">
+          </div>
+          <div class="err" id="err-birthPlace"></div>
+        </div>
+        <div class="field">
+          <label for="livePlace">现居地（可选，日返/行运按此排盘）</label>
+          <div class="geo-wrap">
+            <input type="text" id="livePlace" placeholder="如：深圳，不填则同出生地" autocomplete="off">
+          </div>
+        </div>
+        <div class="field">
+          <label for="houseSystem">宫位制</label>
+          <div class="houses-select">
+            <select id="houseSystem">
+              <option value="placidus">普拉西德制（波氏）（默认）</option>
+              <option value="whole">整宫制 (Whole Sign)</option>
+              <option value="equal">等宫制 (Equal)</option>
+              <option value="koch">柯赫 (Koch)</option>
+              <option value="regiomontanus">芮氏 (Regiomontanus)</option>
+              <option value="campanus">坎氏 (Campanus)</option>
+              <option value="alcabitius">阿卡比特 (Alcabitius)</option>
+              <option value="morinus">莫氏 (Morinus)</option>
+              <option value="topocentric">锥心 (Topocentric)</option>
+              <option value="meridian">子午线 (Meridian)</option>
+              <option value="apc">APC</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="transitType">推运方式</label>
+          <div class="houses-select">
+            <select id="transitType">
+              <option value="solar-arc">太阳弧 (Solar Arc)</option>
+              <option value="solar-return">日返 (Solar Return)</option>
+              <option value="secondary">次限 (Secondary)</option>
+              <option value="tertiary">三限 (Tertiary)</option>
+              <option value="transit">行运 (Transit)</option>
+              <option value="lunar-return">月返 (Lunar Return)</option>
+              <option value="profection">小限 (Profection)</option>
+              <option value="firdaria">法达 (Firdaria)</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="transitDate">推运目标日期</label>
+          <input type="date" id="transitDate">
+          <div class="err" id="err-transitDate"></div>
+          <p class="field-note">太阳弧/次限/三限/行运/月返以该日为推进终点；日返取该年太阳回归时刻；小限按该年年龄推进；法达按该日年龄分配大运。</p>
+        </div>
+      </div>
+      <div class="cust-quick">
+        <button class="btn-export" id="btnPickCustomer" type="button">从客户库选择</button>
+        <span class="cust-hint">已建档的客户可一键载入出生信息</span>
+      </div>
+      <button class="btn-primary" id="btnGenerate">生 成 我 的 推 运 盘</button>
+    </div>
+  </section>
+
+  <!-- ============ 结果区 ============ -->
+  <section id="result">
+    <div class="result-head">
+      <div>
+        <h2>你的推运盘</h2>
+        <div class="place" id="placeLine"></div>
+      </div>
+      <div class="result-actions">
+        <span class="coin-chip"></span>
+        <button class="btn-export" id="btnSave">存入客户库</button>
+        <button class="btn-export" id="btnExport">导出报告（1星币）</button>
+        <button class="btn-export" id="btnReset">重新输入</button>
+      </div>
+    </div>
+
+    <!-- 推运时间切换控件：日/月/年粒度 + 上一步/下一步步进，切换后重算重渲染 -->
+    <div class="transit-nav" id="transitNav" aria-label="推运时间切换">
+      <div class="tn-label">时间切换</div>
+      <div class="tn-steps">
+        <button type="button" class="nav-step" id="btnPrev" title="上一步（按当前粒度）" aria-label="上一步">&#9664;</button>
+        <div class="gran-group" role="group" aria-label="时间粒度">
+          <button type="button" class="gran-btn active" data-gran="day">日</button>
+          <button type="button" class="gran-btn" data-gran="month">月</button>
+          <button type="button" class="gran-btn" data-gran="year">年</button>
+        </div>
+        <button type="button" class="nav-step" id="btnNext" title="下一步（按当前粒度）" aria-label="下一步">&#9654;</button>
+      </div>
+      <div class="tn-time" id="transitNavTime"></div>
+    </div>
+
+    <div class="chart-layout">
+      <div class="chart-box">
+        <div id="wheel"></div>
+        <div class="legend">
+          <span><i class="lg-harm"></i>和谐相位（实线）</span>
+          <span><i class="lg-tense"></i>紧张相位（虚线）</span>
+          <span>&#8486; = 逆行</span>
+        </div>
+        <p class="planet-panel-note">内圈为本命盘（含宫位），外圈为推运盘；连线为推运与本命之间的跨盘相位。</p>
+      </div>
+      <aside class="planet-panel">
+        <h4 class="planet-panel-title">行星速览</h4>
+        <div class="planet-list" id="planetList"></div>
+        <p class="planet-panel-note">上半组为本命行星，下半组为推运行星；&#8486; 为逆行。</p>
+      </aside>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="tab-report">推运解析</button>
+      <button class="tab" data-tab="tab-ai">AI 问答</button>
+      <button class="tab" data-tab="tab-data">盘面数据</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-report"></div>
+
+    <div class="tab-panel" id="tab-ai">
+      <div class="ai-tabs">
+        <button class="ai-tab active" data-ai-tab="ai-qa-panel" type="button">AI 回答</button>
+        <button class="ai-tab" data-ai-tab="ai-deep-panel" type="button">AI 深度解析</button>
+        <button class="ai-tab ai-pro-tab" data-ai-tab="ai-pro-panel" type="button" style="display:none">AI 专业解析</button>
+      </div>
+      <div class="ai-sub-panel active" id="ai-qa-panel">
+        <div class="ai-layout">
+          <div class="ai-qa">
+          <div class="chips">
+            <button class="chip">这段时间我的事业运势如何？</button>
+            <button class="chip">感情上会有什么变化？</button>
+            <button class="chip">财运方面需要注意什么？</button>
+            <button class="chip">哪些方面容易有突破？</button>
+            <button class="chip">这次推运的重点课题是什么？</button>
+          </div>
+          <div class="chat-window" id="chatWindow">
+            <div class="msg ai">
+              <div class="avatar">AI</div>
+              <div class="bubble">你好，我已经读完你的本命盘和推运盘了。这段时间的事业、感情、财运变化——有什么想问的直接问我，我会结合盘面给你说人话的答案。</div>
+            </div>
+          </div>
+          <div class="chat-input-row">
+            <textarea id="chatInput" rows="1" placeholder="输入你的问题，Enter 发送（Shift+Enter 换行）"></textarea>
+            <button id="btnSend">发送</button>
+          </div>
+          <p class="ai-note">AI 问答每次消耗 1 星币；首次使用请点击右上角「AI 设置」配置接口（支持 DeepSeek 等 OpenAI 兼容服务），配置一次全站通用。</p>
+          </div>
+        </div>
+      </div>
+      <div class="ai-sub-panel" id="ai-deep-panel">
+        <div class="deep-panel">
+          <div class="deep-head">
+            <span class="deep-badge">运</span>
+            <h4>推运整体综合解析</h4>
+          </div>
+          <p class="deep-desc">AI 将结合你的本命盘与所选推运盘（太阳弧 / 日返 / 次限 / 三限 / 行运），生成「推运整体综合解析 + 主要课题」——帮你抓住这段时间的人生主线。每次消耗 1 星币。</p>
+          <div class="deep-actions">
+            <div class="period-group" id="deepPeriodGroup" style="display:none"></div>
+            <button class="btn-export" id="btnDeepReport" type="button">生成 AI 深度解析（1星币）</button>
+          </div>
+          <div class="deep-report" id="deepReport">
+            <span class="deep-empty">尚未生成深度解析。点击上方按钮，AI 将为你梳理这段推运期的整体主线与最重要的成长课题。</span>
+          </div>
+        </div>
+      </div>
+      <div class="ai-sub-panel" id="ai-pro-panel">
+        <div class="deep-panel">
+          <div class="deep-head">
+            <span class="deep-badge">专</span>
+            <h4>AI 专业解析（2500 字）</h4>
+          </div>
+          <p class="deep-desc">站主/管理员专属：AI 将结合你的本命盘与所选推运盘生成约 2500 字的专业级完整报告（推运整体综合解析 + 主要课题 + 本命核心课题 + 年度/近期运势综合解析 + 注意事项）。每次消耗 1 星币。</p>
+          <div class="deep-actions">
+            <div class="period-group" id="proPeriodGroup" style="display:none"></div>
+            <button class="btn-export" id="btnProReport" type="button">生成 AI 专业解析（1星币）</button>
+          </div>
+          <div class="deep-report" id="proReport">
+            <span class="deep-empty">尚未生成专业解析。该功能仅站主/管理员可见可用。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-data">
+      <div class="ai-layout">
+        <div id="dataGrid"></div>
+        <p class="ai-note">以下为盘面原始数据（AI 问答时使用的就是这份数据，保证回答有据可依）：</p>
+        <details class="acc">
+          <summary>原始数据 JSON</summary>
+          <div class="acc-body"><pre id="aiContext" class="data-pre"></pre></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site" data-site-footer>星座包括黄道十二宫的描述为传统占星文化的通俗解读，仅供娱乐与自我探索参考。</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/notify.js"></script>
+<script src="js/billing.js"></script>
+<script src="js/astro.js"></script>
+<script src="js/interpret.js"></script>
+<script src="js/chart.js"></script>
+<script src="js/cities-cn.js"></script>
+<script src="js/customers-lib.js"></script>
+<script src="js/personal.js"></script>
+</body>
+</html>

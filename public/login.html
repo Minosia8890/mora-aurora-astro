@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-site-title data-site-title-prefix="登录">Mora Aurora Astro</title>
+<script src="js/theme.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site">
+    <div class="brand">
+      <div class="brand-mark">&#9737;</div>
+      <h1 data-site-name>Mora Aurora Astro</h1>
+    </div>
+    <div class="header-actions">
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="切换黑白模式"></button>
+      <div id="userArea" class="user-area"></div>
+    </div>
+  </header>
+
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <h2>登录</h2>
+      <p class="sub">欢迎回来，输入账号密码继续。</p>
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="loginUser">用户名</label>
+          <input type="text" id="loginUser" placeholder="你的用户名" autocomplete="username">
+        </div>
+        <div class="field">
+          <label for="loginPass">密码</label>
+          <input type="password" id="loginPass" placeholder="密码" autocomplete="current-password">
+        </div>
+        <div class="form-msg" id="loginMsg"></div>
+        <button type="submit" class="btn-primary">登 录</button>
+      </form>
+      <div class="auth-alt">还没有账号？<a href="register.html">立即注册</a></div>
+    </div>
+  </div>
+
+  <footer class="site" data-site-footer>星座包括黄道十二宫的描述为传统占星文化的通俗解读，仅供娱乐与自我探索参考。</footer>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/notify.js"></script>
+<script>
+(function () {
+  'use strict';
+  var form = document.getElementById('loginForm');
+  var msg = document.getElementById('loginMsg');
+  var params = new URLSearchParams(location.search);
+  var next = params.get('next');
+
+  function target() {
+    return (next && next !== 'login.html' && next !== 'register.html') ? next : 'natal.html';
+  }
+
+  // 本地缓存不作为登录依据：必须经服务端确认会话有效才跳走。
+  // 否则一份陈旧缓存会把登录页直接顶掉，表现为“登录页打不开”。
+  if (Auth.hasSession()) {
+    API.auth.me().then(function (d) {
+      API.setCachedProfile(d.user);
+      location.href = target();
+    }).catch(function () {
+      API.clearSession();
+      msg.textContent = '登录状态已过期，请重新登录';
+    });
+  } else if (API.cachedProfile()) {
+    API.clearSession();
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    msg.textContent = '';
+    var u = document.getElementById('loginUser').value.trim();
+    var p = document.getElementById('loginPass').value;
+    if (!u || !p) { msg.textContent = '请输入用户名和密码'; return; }
+    var btn = form.querySelector('button[type="submit"]');
+    if (btn) btn.disabled = true;
+    var r = await Auth.login(u, p);
+    if (btn) btn.disabled = false;
+    if (!r.ok) { msg.textContent = r.msg; return; }
+    location.href = target();
+  });
+})();
+</script>
+</body>
+</html>

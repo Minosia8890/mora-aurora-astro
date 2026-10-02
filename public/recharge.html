@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-site-title data-site-title-prefix="充值">Mora Aurora Astro</title>
+<script src="js/theme.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site">
+    <div class="brand">
+      <div class="brand-mark">&#9737;</div>
+      <h1><a href="index.html" style="color:inherit;text-decoration:none" data-site-name>Mora Aurora Astro</a></h1>
+    </div>
+    <div class="header-actions">
+      <nav class="main-nav"><a class="nav-link" href="natal.html">本命星盘</a><a class="nav-link" href="synastry.html">占星合盘</a><a class="nav-link" href="personal.html">个人运势</a><div class="nav-drop"><a class="nav-link" href="horoscope.html?tab=daily">十二星座运势 <span class="caret">&#9662;</span></a><div class="drop-menu"><a href="horoscope.html?tab=daily">日运</a><a href="horoscope.html?tab=monthly">月运</a><a href="horoscope.html?tab=yearly">年运</a></div></div></nav>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="切换黑白模式"></button>
+      <div id="userArea" class="user-area"></div>
+    </div>
+  </header>
+
+  <div class="recharge-wrap">
+    <h2>充值中心</h2>
+    <p class="recharge-sub" id="helloLine">登录后即可充值。</p>
+
+    <div class="balance-box">
+      <div class="k">当前余额</div>
+      <div class="num"><span id="balanceNum">--</span><small id="currencyName"></small></div>
+    </div>
+
+    <div class="plans-title">选择充值套餐</div>
+    <div class="plans" id="plans"></div>
+
+    <p class="pay-note">演示环境：点击充值将直接到账，不会产生任何真实扣款。套餐与价格由主平台统一配置。</p>
+    <button class="btn-recharge" id="btnPay" disabled>确认充值</button>
+
+    <div class="txn-title">收支明细</div>
+    <div class="txn-list" id="txnList"></div>
+  </div>
+
+  <footer class="site" data-site-footer>星座包括黄道十二宫的描述为传统占星文化的通俗解读，仅供娱乐与自我探索参考。</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/notify.js"></script>
+<script>
+(function () {
+  'use strict';
+  if (!Auth.requireLogin()) return;
+
+  var CURRENCY = (window.SITE_CONFIG && window.SITE_CONFIG.currency) || '星币';
+  var selected = null;
+  var plans = [];
+
+  var toastTimer;
+  function toast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2600);
+  }
+
+  function fmt(n) { return Number(n).toLocaleString('zh-CN'); }
+
+  function isUnlimited() { return !!(Auth.isUnlimited && Auth.isUnlimited()); }
+
+  function renderBalance(balance) {
+    // 内测/站长账号星币无限：显示 ∞ 而非数字
+    document.getElementById('balanceNum').textContent = isUnlimited() ? '\u221e' : fmt(balance);
+    document.getElementById('currencyName').textContent = CURRENCY;
+  }
+
+  function renderPlans() {
+    var box = document.getElementById('plans');
+    if (!plans.length) {
+      box.innerHTML = '<div class="txn-empty">暂无可购买的套餐，请联系站长配置。</div>';
+      return;
+    }
+    box.innerHTML = plans.map(function (p, i) {
+      return '<div class="plan-card" data-index="' + i + '">' +
+        '<div class="coins">' + fmt(p.coins) + ' <small>' + CURRENCY + '</small></div>' +
+        '<div class="price">\u00a5' + p.price + '</div>' +
+        (p.bonus ? '<div class="bonus">额外赠 ' + fmt(p.bonus) + ' ' + CURRENCY + '</div>' : '<div class="bonus">&nbsp;</div>') +
+        '</div>';
+    }).join('');
+    Array.prototype.forEach.call(box.querySelectorAll('.plan-card'), function (el) {
+      el.addEventListener('click', function () {
+        Array.prototype.forEach.call(box.querySelectorAll('.plan-card'), function (x) { x.classList.remove('selected'); });
+        el.classList.add('selected');
+        selected = plans[+el.getAttribute('data-index')];
+        document.getElementById('btnPay').disabled = false;
+        document.getElementById('btnPay').textContent = '确认充值 \u00a5' + selected.price;
+      });
+    });
+  }
+
+  var TXN_LABEL = { recharge: '充值', spend: '消费', refund: '退回', admin_adjust: '调账' };
+
+  function renderTxns(list) {
+    var box = document.getElementById('txnList');
+    if (!list || !list.length) {
+      box.innerHTML = '<div class="txn-empty">暂无收支记录。</div>';
+      return;
+    }
+    box.innerHTML = list.map(function (t) {
+      var sign = t.amount >= 0 ? '+' : '';
+      var time = String(t.createdAt || '').replace('T', ' ').slice(0, 16);
+      return '<div class="txn-item"><span>' + time + ' · ' + (TXN_LABEL[t.type] || t.type) +
+        (t.note ? '（' + t.note + '）' : '') + '</span><b>' + sign + fmt(t.amount) + ' ' + CURRENCY + '</b></div>';
+    }).join('');
+  }
+
+  function loadWallet() {
+    return API.wallet.summary({ limit: 50 }).then(function (d) {
+      renderBalance(d.balance);
+      renderTxns(d.transactions);
+      var p = API.cachedProfile();
+      if (p) { p.balance = d.balance; API.setCachedProfile(p); }
+      if (window.Billing) Billing.refreshChips();
+      Auth.renderUserArea();
+    }).catch(function (err) {
+      toast('读取钱包失败：' + err.message);
+    });
+  }
+
+  document.getElementById('btnPay').addEventListener('click', function () {
+    if (!selected) return;
+    var gain = selected.coins + selected.bonus;
+    if (typeof confirm === 'function') {
+      var ok = confirm('模拟支付 \u00a5' + selected.price + '，到账 ' + fmt(gain) + ' ' + CURRENCY + '。确认充值？');
+      if (!ok) return;
+    }
+    var btn = document.getElementById('btnPay');
+    btn.disabled = true;
+    API.wallet.recharge(selected.id).then(function (r) {
+      var p = API.cachedProfile();
+      if (p) { p.balance = r.balance; API.setCachedProfile(p); }
+      toast('充值成功：' + fmt(r.gain) + ' ' + CURRENCY + ' 已到账');
+      return loadWallet();
+    }).catch(function (err) {
+      toast('充值失败：' + err.message);
+    }).then(function () {
+      btn.disabled = false;
+    });
+  });
+
+  // 初始化
+  document.getElementById('currencyName').textContent = CURRENCY;
+  var me = Auth.currentProfile();
+  var unlimited = isUnlimited();
+  // 内测/站长账号星币无限：隐藏充值入口并提示无需充值
+  if (unlimited) {
+    document.getElementById('helloLine').textContent = '您为内测/站长账号，星币无限（∞），无需充值。';
+    ['plans-title', 'plans', 'btnPay', 'pay-note'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+  } else {
+    document.getElementById('helloLine').textContent =
+      '你好，' + (me ? (me.nickname || me.username) : '') + '。选择套餐即可完成充值（演示支付）。';
+  }
+
+  API.wallet.plans().then(function (d) {
+    plans = d.items || [];
+    renderPlans();
+  }).catch(function (err) {
+    toast('套餐加载失败：' + err.message);
+  });
+
+  loadWallet();
+})();
+</script>
+</body>
+</html>

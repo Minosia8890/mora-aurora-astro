@@ -1,0 +1,31 @@
+{
+  "name": "astro-chart-site",
+  "version": "2.0.0",
+  "description": "Mora Aurora Astro — 全栈星盘应用（主平台 + 客户副平台）",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server.js",
+    "test": "node --disable-warning=ExperimentalWarning test-api.js",
+    "test:e2e": "node --disable-warning=ExperimentalWarning test-e2e.js",
+    "test:all": "npm test && npm run test:e2e"
+  },
+  "keywords": [
+    "astrology",
+    "fullstack",
+    "node",
+    "sqlite"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "astronomy-engine": "^2.1.19"
+  },
+  "devDependencies": {
+    "jsdom": "^30.0.1"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "type": "commonjs"
+}

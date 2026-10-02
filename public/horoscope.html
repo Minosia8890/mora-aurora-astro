@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="18fkhjXSf1ulFIjHMCFFi3">
+<head data-page-node-id="23QknXW26dOgC15pQyquLf">
+<meta charset="UTF-8" data-page-node-id="zEKdOaEMOhz3KYbQPEwUmW">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="dbsAasDu1qCg2JawBhMyye">
+<title data-site-title data-site-title-prefix="十二星座运势">Mora Aurora Astro</title>
+<script src="js/theme.js"></script>
+<link rel="stylesheet" href="css/style.css" data-page-node-id="YeLNpEwGPQpmclDYpXRa2Z">
+<script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+</head>
+<body data-page-node-id="jBuAveDVNb6VvfXHXlA8Xp">
+<div class="wrap" data-page-node-id="6FLCRxMEw0gpo1tih6VVfa">
+
+  <header class="site" data-page-node-id="SYIae2MxeoipapTuXejqE9">
+    <div class="brand" data-page-node-id="PxdGvB6mfiweQf9gwlWmZ2">
+      <a href="index.html" class="brand-link" data-page-node-id="dR3gKjtiXklBE1wJhY8Bdu">
+        <div class="brand-mark" data-page-node-id="BPCDFKxFuq9M61TtKginzC">&#9737;</div>
+        <h1 data-site-name data-page-node-id="5jRC4HQR2CjCkFZ8Cljdfz">Mora Aurora Astro</h1>
+      </a>
+    </div>
+    <nav class="main-nav" data-page-node-id="GinXcKgEJm3L1Kc8jnDSqW">
+      <a href="natal.html" data-page-node-id="3NaOHjpJwmHVhYruwZlnWy">本命星盘</a>
+      <a href="synastry.html" data-page-node-id="FLUyaK7CKWAFGaz4SsSyU5">占星合盘</a>
+      <a href="personal.html" data-page-node-id="personalNavHoro">个人运势</a>
+      <div class="nav-drop" data-page-node-id="fCUxIln0xQBicf7xdClq0X">
+        <a href="horoscope.html?tab=daily" class="active" data-page-node-id="e95fZr0H8YXKgJDX9KjVK3">十二星座运势 <span class="caret" data-page-node-id="UJUQdWWiIIXUHqY1kj5HUC">&#9662;</span></a>
+        <div class="drop-menu" data-page-node-id="7XVQmkDD1eylDAGxyhCc9Z">
+          <a href="horoscope.html?tab=daily" data-page-node-id="sIRBAFmfMz4iMYHzMdxxxs">日运</a>
+          <a href="horoscope.html?tab=monthly" data-page-node-id="tgLuwBE1ln8No62c89uZLC">月运</a>
+          <a href="horoscope.html?tab=yearly" data-page-node-id="aVnjeOyJbFh9c5NYi7DaWX">年运</a>
+        </div>
+      </div>
+    </nav>
+    <div class="header-actions" data-page-node-id="GZd5K3KsIcLhhnw7YY11CD">
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="切换黑白模式" data-page-node-id="LNEZ2fEynGILDRdvISliR4"></button>
+      <div id="userArea" class="user-area" data-page-node-id="Z5KSSiDiGsVni9oqw4jujS"></div>
+    </div>
+  </header>
+
+  <section class="horo-head" data-page-node-id="kht0ZoVTzuTjyHS5VXzxRi">
+    <div class="eyebrow" data-page-node-id="DC6v11216HFGG9F3EP02tA">HOROSCOPE · 十二星座运势</div>
+    <h2 data-page-node-id="K0EelyBefGb5LUu8ADd90u">十二星座运势：<span class="gold" data-page-node-id="vmFa0wPlafNQTc41m34RhV">跟着天象过日子</span></h2>
+    <p class="sub" data-page-node-id="Aj2BDcVqi7seEgUSgNd3eH">日运 · 月运 · 年运三层视角：月亮换座定情绪基调，新月满月定起承转合，木星土星定年度大方向。<br data-page-node-id="m4aTXaO8c5Pd2NHsEwkZ8F">天象数据全部来自真实星历推算，十二星座解读每日每月每年更新。</p>
+  </section>
+
+  <div class="tabs" data-page-node-id="ZWZAuXgTGLCZji5fqGQz6K">
+    <button class="tab active" data-tab="daily" data-page-node-id="lkTxpR6rZ2CPrQmBtIugyj">今日运势</button>
+    <button class="tab" data-tab="monthly" data-page-node-id="Q4pKMCTJVRUAjSQdtb0JsI">本月运势</button>
+    <button class="tab" data-tab="yearly" data-page-node-id="4D7wPBrW4N4IVRlm3ktr1D">今年运势</button>
+  </div>
+
+  <div class="horo-toolbar" id="toolbarDaily" data-page-node-id="agXdDACdDF6jkYdjXH4O6n">
+    <label for="dailyDate" data-page-node-id="dILTjFD4cPsPjGKSHvyGvj">选择日期</label>
+    <input type="date" id="dailyDate" data-page-node-id="SDpY4AhcsNcJcB8oK0miro">
+  </div>
+  <div class="horo-toolbar" id="toolbarMonthly" style="display:none" data-page-node-id="muCRDrjHqWNSIJzdU4qGPi">
+    <label for="monthlyMonth" data-page-node-id="Rkjk7QFoAmLog87PuaoSGI">选择月份</label>
+    <input type="month" id="monthlyMonth" data-page-node-id="krWwJh3GrcIZViPW3yi0Fs">
+  </div>
+  <div class="horo-toolbar" id="toolbarYearly" style="display:none" data-page-node-id="o5NKGDHCDg9nNX1CF386jo">
+    <label for="yearlyYear" data-page-node-id="cXMwjuilIZUBBl9U6hqQ7n">选择年份</label>
+    <input type="number" id="yearlyYear" min="1900" max="2400" step="1" data-page-node-id="W48RsiWsNMZ9LIeTvBfTmD">
+  </div>
+
+  <div class="qs-grid" id="skyPanel" data-page-node-id="VhEGYP8x4ibF1rxNenkL4D"></div>
+  <div class="horo-grid" id="signGrid" data-page-node-id="sZvUfEGrjT0rRMOGwDkovv"></div>
+  <p class="horo-note" id="horoNote" data-page-node-id="CqLsndxHbUuK3MQ4bEbOFv"></p>
+
+  <footer class="site" data-site-footer data-page-node-id="uhmtPNFU2tGGVj2o4DkfE5">星座包括黄道十二宫的描述为传统占星文化的通俗解读，仅供娱乐与自我探索参考。</footer>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/notify.js"></script>
+<script src="js/astro.js"></script>
+<script src="js/horoscope.js"></script>
+</body>
+</html>

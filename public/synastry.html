@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="wLHOvrGimCFATJjYoptaSa">
+<head data-page-node-id="KQQtBGIQz761DHvKXNo7ya">
+<meta charset="UTF-8" data-page-node-id="Sb6m7BLmCoUZInB8L4M6yQ">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="LV2HH1NdqozCDM4LHj1zbR">
+<title data-site-title data-site-title-prefix="占星合盘">Mora Aurora Astro</title>
+<script src="js/theme.js"></script>
+<link rel="stylesheet" href="css/style.css" data-page-node-id="GNqVCkhMHnuS7obNuqixIq">
+<script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+</head>
+<body data-page-node-id="McJlQ2Xjsmth7xOS7wJxV6">
+<div class="wrap" data-page-node-id="xFGrmp1fEBnf7eQoBfgiL9">
+
+  <header class="site" data-page-node-id="1Whr2uDJNRaifqBp6FDzn0">
+    <div class="brand" data-page-node-id="WhuqU23mjFmifcWeffRnbN">
+      <a href="index.html" class="brand-link" data-page-node-id="60dJiot5mURVIhqpLCZRN0">
+        <div class="brand-mark" data-page-node-id="CqhONBCItD5BrLlVHrDutG">&#9737;</div>
+        <h1 data-site-name data-page-node-id="sIcMXILRdNLIKn4TKI8iOc">Mora Aurora Astro</h1>
+      </a>
+    </div>
+    <nav class="main-nav" data-page-node-id="wuo5D5ccKxbD6EgP59CBhn">
+      <a href="natal.html" data-page-node-id="96D2Kqfa7gQ5xVskERff62">本命星盘</a>
+      <a href="synastry.html" class="active" data-page-node-id="7kpZ6GOPROBjCD5yOfWzho">占星合盘</a>
+      <a href="personal.html">个人运势</a>
+      <div class="nav-drop" data-page-node-id="jld3ITNsWoSztHOT5Iy10y">
+        <a href="horoscope.html?tab=daily" data-page-node-id="VoReSMSjRYG0QzHJCfC5i2">十二星座运势 <span class="caret" data-page-node-id="2LbQcfftlYGBI6A0vRXWjJ">&#9662;</span></a>
+        <div class="drop-menu" data-page-node-id="qMXlcyhPDUBoANbx9I83bu">
+          <a href="horoscope.html?tab=daily" data-page-node-id="o0sCetrMNDRCRZWCa8VcKh">日运</a>
+          <a href="horoscope.html?tab=monthly" data-page-node-id="AFsqiE6rQ8bGbIme5Tog6C">月运</a>
+          <a href="horoscope.html?tab=yearly" data-page-node-id="8sPdJzbSZn7MMPRITifi8H">年运</a>
+        </div>
+      </div>
+    </nav>
+    <div class="header-actions" data-page-node-id="iQCGuDXjB5R0CvUHmGCIH0">
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="切换黑白模式" data-page-node-id="6mGlqy1AVntfWClEV8CWpY"></button>
+      <div id="userArea" class="user-area" data-page-node-id="f6SVaZhyjxZpF3GEWDzsMt"></div>
+    </div>
+  </header>
+
+  <!-- ============ 表单 ============ -->
+  <section id="synForm" data-page-node-id="bTjc7sEpVpWBNKpjHzrbX2">
+    <div class="hero" data-page-node-id="73j7dAB47QVL7TFgXdu5BH">
+      <div class="eyebrow" data-page-node-id="VGUbdJdrNjUgWagmBBXe6x">SYNASTRY · 合盘</div>
+      <h2 data-page-node-id="3iecsfXYDBq5pnWby5alsz">两个人的星盘放在一起，<br data-page-node-id="fLO3QaAXPicBYIan8L1vWV">关系里的<span class="gold" data-page-node-id="xhUdJGnMLn1jGCOY3n9OSg">答案</span>就出来了</h2>
+      <p class="sub" data-page-node-id="GNjM61IezWfmImGE4IAEHL">输入双方出生信息，生成双人比较盘（Bi-Wheel）：<br data-page-node-id="WV70GuGvug24wCwHPCPth4">吸引力在哪、磨合在哪、谁点谁的心动开关，用跨盘相位讲明白。</p>
+    </div>
+
+    <div class="pair-grid" data-page-node-id="L0HA4jyh5TnUuNzx2TeiOB">
+      <div class="form-card pair-card" data-page-node-id="dKANbyvv1VdHekaDrz5H0H">
+        <div class="pair-tag" data-page-node-id="LyzG4GKYzU7icEDZU3T7zd">TA · A 方</div>
+        <div class="field" data-page-node-id="mMlqKuEcEng2bIuPjPy0Se">
+          <label for="nameA" data-page-node-id="313V0EvhBNQUx8BWH8mUiH">A 的昵称</label>
+          <input type="text" id="nameA" placeholder="如：小星" data-page-node-id="eviqEaYLVK3uftvF9PdhQK">
+        </div>
+        <div class="field" data-page-node-id="NesMWqKCIX2ZH8sPeigvOw">
+          <label for="dateA" data-page-node-id="IBPq5jBB8JEtUBjMyiUgvk">出生日期 *</label>
+          <input type="date" id="dateA" min="1800-01-01" max="2400-12-31" data-page-node-id="ODcJcF5Ks0WF8HSb8UpbOH">
+        </div>
+        <div class="field" data-page-node-id="AMQ9J8A5JEo2FFxnjmfNwA">
+          <label for="timeA" data-page-node-id="ZwJOmKz4O2Gm63RAzetnPh">出生时间</label>
+          <input type="time" id="timeA" value="12:00" data-page-node-id="jvOQGD7gQgPcfWy5bU1Oh6">
+          <div class="check-row" data-page-node-id="NpXiBboe7AQ6KjFwmBnsrz">
+            <input type="checkbox" id="unkA" data-page-node-id="sqoXb74AsSCx5YyGQrab07">
+            <label for="unkA" data-page-node-id="0dFA2ScgLzcB5vH6Ls65VE">时间不详（按 12:00 估算）</label>
+          </div>
+        </div>
+        <div class="field" data-page-node-id="ZGzpDCXKWpgiwejkx6Pl7P">
+          <label for="placeA" data-page-node-id="g6nXX59da70TOKh8yV4dBS">出生地 *</label>
+          <div class="geo-wrap" data-page-node-id="5KaIc1IWfTwBxH11qfKoT5">
+            <input type="text" id="placeA" placeholder="输入后从联想中选择" autocomplete="off" data-page-node-id="gaUbTLc3koUbyTw6T1Rxtc">
+          </div>
+        </div>
+        <div class="cust-quick">
+          <button class="btn-export" id="btnPickA" type="button">从客户库选择</button>
+          <span class="cust-hint">载入已建档客户的出生信息</span>
+        </div>
+      </div>
+
+      <div class="form-card pair-card" data-page-node-id="RcydHEA8OD1Efeehc6IUA3">
+        <div class="pair-tag" data-page-node-id="b6XmFBENjAyiG5KtCGKQlY">你 · B 方</div>
+        <div class="field" data-page-node-id="XqI3C7gLUvNhZT0MHw6ZEA">
+          <label for="nameB" data-page-node-id="kApawKq0M8rfValTbyH6Qh">B 的昵称</label>
+          <input type="text" id="nameB" placeholder="如：阿月" data-page-node-id="88wDcDhvJV3AQ4HG6rzmIl">
+        </div>
+        <div class="field" data-page-node-id="nzvW7g4Sj7t8itMcY8U9Gp">
+          <label for="dateB" data-page-node-id="MJXfxwTAtkOweb2ze6KDe5">出生日期 *</label>
+          <input type="date" id="dateB" min="1800-01-01" max="2400-12-31" data-page-node-id="zBGfoFqtqdyEWKYHDkRHK6">
+        </div>
+        <div class="field" data-page-node-id="KUxs8A7k8ILU94ToOFNBsQ">
+          <label for="timeB" data-page-node-id="76J8WFdg36Y0ShV3qrw8zG">出生时间</label>
+          <input type="time" id="timeB" value="12:00" data-page-node-id="j9YCenEmhP0JGzmAmtnmcj">
+          <div class="check-row" data-page-node-id="5rp6Ct5ouHBnvjsAcq3Ih8">
+            <input type="checkbox" id="unkB" data-page-node-id="WvmZJXL7XhVkckrpKwCBNg">
+            <label for="unkB" data-page-node-id="AgRA8g15smNkEHJZZVYlcO">时间不详（按 12:00 估算）</label>
+          </div>
+        </div>
+        <div class="field" data-page-node-id="NkavAxuB2GnzcoIDAetDfM">
+          <label for="placeB" data-page-node-id="JSbbVqPRi54A0RZZpR6xXk">出生地 *</label>
+          <div class="geo-wrap" data-page-node-id="S7TpDm1CD4FYBjCG9kLVT8">
+            <input type="text" id="placeB" placeholder="输入后从联想中选择" autocomplete="off" data-page-node-id="mkZcSd4lWoVQPInAICG1E7">
+          </div>
+        </div>
+        <div class="cust-quick">
+          <button class="btn-export" id="btnPickB" type="button">从客户库选择</button>
+          <span class="cust-hint">载入已建档客户的出生信息</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card" style="max-width:760px;margin-top:0" data-page-node-id="CKDWRKjirC6H8r8hpBPvv6">
+      <div class="form-grid" data-page-node-id="eMVL66yCw49xnqYKEmyxu9">
+        <div class="field">
+          <label for="synType">合盘盘型（10 种）</label>
+          <div class="houses-select">
+            <select id="synType" data-page-node-id="rL3tFfmlAR1lOEcgFz3pXS">
+              <option value="synastry">比较盘（Synastry）</option>
+              <option value="composite">组合盘（Composite）</option>
+              <option value="composite-secondary">组合次限盘</option>
+              <option value="composite-tertiary">组合三限盘</option>
+              <option value="marx">马盘（马克思盘）</option>
+              <option value="marx-secondary">马次限盘</option>
+              <option value="marx-tertiary">马三限盘</option>
+              <option value="davison">时空盘（Davison）</option>
+              <option value="davison-secondary">时空次限盘</option>
+              <option value="davison-tertiary">时空三限盘</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="synHouse">宫位制（11 种）</label>
+          <div class="houses-select" data-page-node-id="B0OEFYq4iDfXTnWKDBtumV">
+            <select id="synHouse" data-page-node-id="rL3tFfmlAR1lOEcgFz3pXS">
+              <option value="placidus">Placidus（最常用）</option>
+              <option value="whole">整宫制（古典）</option>
+              <option value="equal">等宫制</option>
+              <option value="koch">Koch</option>
+              <option value="regiomontanus">Regiomontanus</option>
+              <option value="campanus">Campanus</option>
+              <option value="alcabitius">Alcabitius</option>
+              <option value="morinus">Morinus</option>
+              <option value="topocentric">Topocentric</option>
+              <option value="meridian">Meridian</option>
+              <option value="apc">APC</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <p class="planet-panel-note" style="margin:14px 0 18px">比较盘为 A/B 双盘叠放；组合盘/马盘按双方同名行星黄经中点合成；时空盘以双方出生时刻中点为盘时、出生地中点为盘地；次限按 1 天=1 年、三限按 1 天=29.5306 天从盘时推进至当前。宫位制双方盘共用同一选择。</p>
+      <button class="btn-primary" id="btnSynastry" data-page-node-id="dpEYzvUaWHNWSKD0Ot5R1m">生 成 合 盘</button>
+    </div>
+  </section>
+
+  <!-- ============ 结果 ============ -->
+  <section id="synResult" style="display:none" data-page-node-id="TDkjLJjksnTZK2uKWHUGcx">
+    <div class="result-head" data-page-node-id="lE7xnFaoGNE2cZuBRFF6fC">
+      <div data-page-node-id="BFvJ9C5wyjhSGSUO9n2Pjy">
+        <h2 id="relTitle" data-page-node-id="AN6DhVFfMKoljzNvDBOxS5"></h2>
+        <div class="place" id="relSub" data-page-node-id="0dHbZ5C02Mrw7yS4WXeGEE"></div>
+      </div>
+      <div class="result-actions" data-page-node-id="tCMh8tPqkNeNvIcdzYKqSM">
+        <span class="coin-chip" data-page-node-id="0nYgCEsyTofgSg3AZDMVvt"></span>
+        <button class="btn-export" id="btnExport" data-page-node-id="bGfHTONhJUX6eypn4kynbl">导出 TXT（1星币）</button>
+        <button class="btn-export" id="btnReset" data-page-node-id="mYMI8CnxJBF38qrVLxmEQZ">重新输入</button>
+      </div>
+    </div>
+
+    <div class="chart-layout" data-page-node-id="cCbTqMpApg8VcpeLb6I0P0">
+      <div class="chart-box" data-page-node-id="iHCWpjkCb1N0345Ui2V1Pk">
+        <div class="syn-viewtabs">
+          <button class="syn-vtab active" type="button" data-v="a">以 A 为主</button>
+          <button class="syn-vtab" type="button" data-v="b">以 B 为主</button>
+        </div>
+        <div id="aWheelBox">
+          <div class="syn-viewlabel">以 A 为主（含宫位）· 比较盘</div>
+          <div id="wheel2" data-page-node-id="ASpfDgrAPX9Zlo9dQ8WX6y"></div>
+        </div>
+        <div id="bWheelBox" style="display:none">
+          <div class="syn-viewlabel">以 B 为主（含宫位）· 比较盘</div>
+          <div id="wheelB"></div>
+        </div>
+        <div class="legend" data-page-node-id="EUGxdzJ3TJpFH9mzsDdFU7">
+          <span data-page-node-id="qdZk9paMN0QZA8VF8aC4Wi"><i class="lg-harm" data-page-node-id="0DFh1svRwTgxYoViDgu6MG"></i>和谐相位（实线）</span>
+          <span data-page-node-id="8SqXMSTAtMWhrds2488qJA"><i class="lg-tense" data-page-node-id="LzUWiW95Ine9mhHrTG8PIA"></i>紧张相位（虚线）</span>
+          <span data-page-node-id="xXs630F11dFWpGnaejftaA">内圈 = A 方 · 外圈 = B 方（比较盘）；合成盘 = A/B 与合成盘叠放</span>
+          <span data-page-node-id="w2o5eAXzzRwlX7BRxwtnum">&#8486; = 逆行</span>
+        </div>
+      </div>
+      <aside class="planet-panel">
+        <h4 class="planet-panel-title">双方行星速览</h4>
+        <div class="planet-list" id="planetList"></div>
+        <p class="planet-panel-note">行星符号后的星座与度数表示落座位置，宫位为各自盘面宫位（比较盘宫位以 A 方盘面为基准，合成盘宫位为合成盘盘面宫位）；&#8486; 为逆行。</p>
+      </aside>
+    </div>
+
+    <div class="tabs" data-page-node-id="KPIDFbGjChCKxgSNGWSlY9">
+      <button class="tab active" data-tab="syn-tab-report" data-page-node-id="E4J1GLfWbsNaGXpG5Q6GYf">合盘解析</button>
+      <button class="tab" data-tab="syn-tab-ai" data-page-node-id="SdB2iTl0zteIFhzfLQHADc">AI 关系问答</button>
+    </div>
+
+    <div class="tab-panel active" id="syn-tab-report" data-page-node-id="7EGdQiQzBQlOCEGTzxN1Sj">
+      <div id="synReport" data-page-node-id="HUBCZO8beNdKgYqRYt3Ixr"></div>
+    </div>
+
+    <div class="tab-panel" id="syn-tab-ai" data-page-node-id="J7yAaPJaqHugEeao4SBFjz">
+      <div class="ai-tabs">
+        <button class="ai-tab active" data-ai-tab="syn-ai-qa" type="button">AI 回答</button>
+        <button class="ai-tab" data-ai-tab="syn-ai-deep" type="button">AI 深度解析</button>
+        <button class="ai-tab ai-pro-tab" data-ai-tab="syn-ai-pro" type="button" style="display:none">AI 专业解析</button>
+      </div>
+      <div class="ai-sub-panel active" id="syn-ai-qa">
+        <div class="ai-layout">
+          <div class="chips" data-page-node-id="riJOzuZon4HrjeHbWBsxgV">
+            <button class="chip" data-page-node-id="E8D0nQmrSh3Ye6SKvts1Qw">我们在一起合适吗？</button>
+            <button class="chip" data-page-node-id="etrDcocjikMn6ayC97wgAG">我们的相处模式是什么样的？</button>
+            <button class="chip" data-page-node-id="IE9ZHljJd7rhm7spUfQdtb">怎么让我们的感情升温？</button>
+            <button class="chip" data-page-node-id="rANDzF4dYA14nTG59SjI0E">我们容易因为什么吵架？</button>
+            <button class="chip" data-page-node-id="lGpesB5n1f5virC5mRB4id">长期相处要注意什么？</button>
+          </div>
+          <div class="chat-window" id="synChatWindow" data-page-node-id="zv8v1tSsgJmGXm8rBeBegR">
+            <div class="msg ai" data-page-node-id="wGPWL8CpPj4s3i6cN7ZpGf">
+              <div class="avatar" data-page-node-id="SwV0nhbvjmDa5ybLiRhdfz">AI</div>
+              <div class="bubble" data-page-node-id="XGp4AlQUUh9sizgYIs5F2Z">你好，我已经读完你们两个人的星盘和跨盘相位了。感情升温、吵架雷区、长期相处——想问什么直接问，我会结合两张盘给你们说人话的答案。</div>
+            </div>
+          </div>
+          <div class="chat-input-row" data-page-node-id="PPhsL0IUdGl05k34yQmzg4">
+            <textarea id="synChatInput" rows="1" placeholder="输入你们的关系问题，Enter 发送（Shift+Enter 换行）"></textarea>
+            <button id="synBtnSend" data-page-node-id="UXRFgqX5NEm97AQTHy3zdk">发送</button>
+          </div>
+          <p class="ai-note" data-page-node-id="PZNf7yCTpDKnee6AtZhEJ6">AI 关系问答每次消耗 1 星币；AI 接口在「本命星盘」页的「AI 设置」中配置一次，全站通用。</p>
+        </div>
+      </div>
+      <div class="ai-sub-panel" id="syn-ai-deep">
+        <div class="deep-panel">
+          <div class="deep-head">
+            <span class="deep-badge">析</span>
+            <h4>合盘整体综合解析</h4>
+          </div>
+          <p class="deep-desc">AI 将结合双方行星落座与跨盘相位，按当前盘型与关系场景生成「合盘整体综合解析 + 主要课题」——帮你抓住这段关系的主线与共同成长课题，不做单星象逐项解读。每次消耗 1 星币。</p>
+          <div class="deep-actions">
+            <div class="reltype-select">
+              <span class="reltype-label">关系场景</span>
+              <button class="reltype-chip active" type="button" data-rel="暧昧">暧昧</button>
+              <button class="reltype-chip" type="button" data-rel="感情">感情</button>
+              <button class="reltype-chip" type="button" data-rel="婚姻">婚姻</button>
+              <button class="reltype-chip" type="button" data-rel="朋友">朋友</button>
+            </div>
+            <button class="btn-export" id="btnSynDeepReport" type="button">生成 AI 深度解析（1星币）</button>
+          </div>
+          <div class="deep-report" id="synDeepReport">
+            <span class="deep-empty">尚未生成深度解析。点击上方按钮，AI 将为你梳理合盘整体主线与当下最重要的关系课题。</span>
+          </div>
+        </div>
+      </div>
+      <div class="ai-sub-panel" id="syn-ai-pro">
+        <div class="deep-panel">
+          <div class="deep-head">
+            <span class="deep-badge">专</span>
+            <h4>AI 专业解析（2500 字）</h4>
+          </div>
+          <p class="deep-desc">站主/管理员专属：AI 将结合双方合盘生成约 2500 字的专业级完整关系报告（合盘整体综合解析 + 主要课题 + 关系核心课题 + 年度/近期关系发展综合解析 + 行动清单）。每次消耗 1 星币。</p>
+          <div class="deep-actions">
+            <button class="btn-export" id="btnSynProReport" type="button">生成 AI 专业解析（1星币）</button>
+          </div>
+          <div class="deep-report" id="synProReport">
+            <span class="deep-empty">尚未生成专业解析。该功能仅站主/管理员可见可用。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site" data-site-footer data-page-node-id="HqZ5kmHUXa2P83oJzNfk0D">星座包括黄道十二宫的描述为传统占星文化的通俗解读，仅供娱乐与自我探索参考。</footer>
+</div>
+
+<div class="toast" id="toast" data-page-node-id="cA41AB3TdCnJ1WiaJQsqnn"></div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/notify.js"></script>
+<script src="js/billing.js"></script>
+<script src="js/astro.js"></script>
+<script src="js/interpret.js"></script>
+<script src="js/chart.js"></script>
+<script src="js/cities-cn.js"></script>
+<script src="js/customers-lib.js"></script>
+<script src="js/synastry.js"></script>
+</body>
+</html>

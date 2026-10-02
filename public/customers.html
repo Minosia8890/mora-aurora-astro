@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-site-title data-site-title-prefix="客户库">Mora Aurora Astro</title>
+<script src="js/theme.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site">
+    <div class="brand">
+      <a href="index.html" class="brand-link">
+        <div class="brand-mark">&#9737;</div>
+        <h1 data-site-name>Mora Aurora Astro</h1>
+      </a>
+    </div>
+    <nav class="main-nav">
+      <a href="natal.html">本命星盘</a>
+      <a href="synastry.html">占星合盘</a>
+      <a href="personal.html">个人运势</a>
+      <div class="nav-drop">
+        <a href="horoscope.html?tab=daily">十二星座运势 <span class="caret">&#9662;</span></a>
+        <div class="drop-menu">
+          <a href="horoscope.html?tab=daily">日运</a>
+          <a href="horoscope.html?tab=monthly">月运</a>
+          <a href="horoscope.html?tab=yearly">年运</a>
+        </div>
+      </div>
+    </nav>
+    <div class="header-actions">
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="切换黑白模式"></button>
+      <div id="userArea" class="user-area"></div>
+    </div>
+  </header>
+
+  <!-- ============ Hero ============ -->
+  <section class="hero hero-home">
+    <div class="eyebrow">CUSTOMERS · 客户资料库</div>
+    <h2>客户出生资料，一次录入，<br><span class="gold">处处可用</span></h2>
+    <p class="sub">保存客户的出生日期时间与出生地，经纬度由 Open-Meteo 自动换算。<br>在本命盘、合盘页面一键载入，免去重复输入。数据保存在本浏览器，按账号隔离。</p>
+  </section>
+
+  <!-- ============ 客户列表 ============ -->
+  <section class="cust-page">
+    <div class="cust-toolbar">
+      <span class="cust-count" id="custCount">共 0 位客户</span>
+      <input type="text" id="custSearch" placeholder="搜索姓名 / 备注…" autocomplete="off">
+      <button class="btn-export" id="btnNew" type="button">+ 新建客户</button>
+    </div>
+    <div class="cust-list" id="custList"></div>
+  </section>
+
+  <footer class="site" data-site-footer>星座包括黄道十二宫的描述为传统占星文化的通俗解读，仅供娱乐与自我探索参考。</footer>
+</div>
+
+<!-- 新建 / 编辑客户 -->
+<div class="modal-mask" id="custModal">
+  <div class="modal">
+    <h3 id="custModalTitle">新建客户</h3>
+    <p class="hint">出生地输入城市 / 区县名，从联想中选择后自动记录经纬度与时区。</p>
+    <div class="field">
+      <label for="custName">姓名 *</label>
+      <input type="text" id="custName" placeholder="如：王小明">
+      <div class="err" id="err-custName"></div>
+    </div>
+    <div class="field">
+      <label for="custDate">出生日期 *</label>
+      <input type="date" id="custDate" min="1800-01-01" max="2400-12-31">
+      <div class="err" id="err-custDate"></div>
+    </div>
+    <div class="field">
+      <label for="custTime">出生时间</label>
+      <input type="time" id="custTime" value="12:00">
+      <div class="check-row">
+        <input type="checkbox" id="custUnk">
+        <label for="custUnk">时间不详（按 12:00 估算）</label>
+      </div>
+    </div>
+    <div class="field">
+      <label for="custPlace">出生地 *</label>
+      <div class="geo-wrap">
+        <input type="text" id="custPlace" placeholder="如：杭州，输入后从联想中选择" autocomplete="off">
+      </div>
+      <div class="err" id="err-custPlace"></div>
+    </div>
+    <div class="field">
+      <label for="custNote">备注（可选）</label>
+      <input type="text" id="custNote" placeholder="如：朋友介绍 / 咨询主题">
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn-ghost" id="btnCloseCust">取消</button>
+      <button type="button" class="btn-gold" id="btnSaveCustomer">保存客户</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/notify.js"></script>
+<script src="js/cities-cn.js"></script>
+<script src="js/customers-lib.js"></script>
+<script src="js/customers.js"></script>
+</body>
+</html>
