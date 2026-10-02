@@ -2,12 +2,14 @@
 AIGC:
     Label: "1"
     ContentProducer: 001191440300708461136T1XGW3
-    ProduceID: 54638d97fd86a763069513b06a8fbb6a_dc53a380be5811f18019525400248c00
-    ReservedCode1: KJAmuHUf827YSZGA1pdFxAgYW6R7YLdNvqCxukIZ9gfqYW9jokKHsRDAjmopRiROIe6clOXumCpGva4Hv7+gV3aXkegeCbr6YEDLn2tNGAxlSA5351dt60kNRlkYht2zI1j/HatBb9Lt6Mj8iCiQurVpS5kHxg2tx/xrw4IZ3ETgtbecRgJY4IPgc4o=
+    ProduceID: 54638d97fd86a763069513b06a8fbb6a_1e441a63be5a11f18019525400248c00
+    ReservedCode1: KKAgf1WTyjuardXXBlBIrBkkVLBO0tY7p+oOY0YA/6bRFSzfySgVi+x+yaYiL3JnNENB4tW7S+1XvD7Ffc9zhE1W823oa/MAZr5ngSLrEfHc1l6zpSmh9b/z6nQayRaJlz1ysLdiSzUJsiE155QG20cRlXQjEej/Zd8bi/8EH+xCa6OPdb2zKFMs0AA=
     ContentPropagator: 001191440300708461136T1XGW3
-    PropagateID: 54638d97fd86a763069513b06a8fbb6a_dc53a380be5811f18019525400248c00
-    ReservedCode2: KJAmuHUf827YSZGA1pdFxAgYW6R7YLdNvqCxukIZ9gfqYW9jokKHsRDAjmopRiROIe6clOXumCpGva4Hv7+gV3aXkegeCbr6YEDLn2tNGAxlSA5351dt60kNRlkYht2zI1j/HatBb9Lt6Mj8iCiQurVpS5kHxg2tx/xrw4IZ3ETgtbecRgJY4IPgc4o=
+    PropagateID: 54638d97fd86a763069513b06a8fbb6a_1e441a63be5a11f18019525400248c00
+    ReservedCode2: KKAgf1WTyjuardXXBlBIrBkkVLBO0tY7p+oOY0YA/6bRFSzfySgVi+x+yaYiL3JnNENB4tW7S+1XvD7Ffc9zhE1W823oa/MAZr5ngSLrEfHc1l6zpSmh9b/z6nQayRaJlz1ysLdiSzUJsiE155QG20cRlXQjEej/Zd8bi/8EH+xCa6OPdb2zKFMs0AA=
 ---
+
+
 
 # Mora Aurora Astro — 前端部分
 
@@ -80,6 +82,22 @@ Mora-Aurora-Astro-frontend/
 - AI 密钥由服务端 AES-GCM 托管，前端不透传明文。
 - `package.json` 中的 `start` / `dev` / `test` / `test:e2e` 脚本依赖完整后端，单独克隆本仓库无法直接运行服务；如需联调，请结合完整项目。
 
+## GitHub Pages 发布
+
+本仓库已配置为可直接发布到 GitHub Pages，两种方式任选其一：
+
+**方式 a：根目录发布（推荐，仓库根即入口）**
+1. 推送本仓库到 GitHub；
+2. 仓库 Settings → Pages → Source 选择 **Deploy from a branch**，分支选 `main`（或默认分支），目录选 **/(root)**；
+3. 启用后访问 `https://<用户名>.github.io/<仓库名>/`，根目录 `index.html` 会自动跳转到 `public/welcome.html`。
+4. 仓库根目录已包含 `.nojekyll` 空文件，可阻止 Jekyll 处理，避免特殊文件名（如下划线前缀文件）被吞。
+
+**方式 b：直接发布 public 目录**
+1. 仓库 Settings → Pages → Source 选择 **Deploy from a branch**，分支选 `main`（或默认分支），目录选 **/public**；
+2. 启用后访问 `https://<用户名>.github.io/<仓库名>/` 即直接打开 `welcome.html`（此方式无需根 index.html 跳转）。
+
+> ⚠️ 注意：Pages 发布后可预览静态页面（界面、星盘渲染、导航跳转均可用），但**登录 / 星盘计算 / AI 解读 / 充值等所有 `/api/*` 功能需要部署完整后端服务后才可用**；本仓库为纯前端，不含后端。
+
 ## 本地打开
 
 静态页面可直接用浏览器打开 `public/welcome.html` 浏览界面与交互；涉及 `/api/*` 的接口调用需后端服务支撑。
@@ -89,4 +107,5 @@ Mora-Aurora-Astro-frontend/
 - `test-astro.js`：星盘计算核心测试，不依赖后端：`node test-astro.js`。
 - `test-customers.js`：客户库页面 jsdom 回归测试，使用本地静态测试桩端口（localhost:3178），不依赖真实后端。
 - 后端集成测试（test-api.js / test-e2e.js）因依赖真实后端服务与数据库，已排除在本仓库之外。
+*（内容由AI生成，仅供参考）*
 *（内容由AI生成，仅供参考）*
